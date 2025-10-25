@@ -70,12 +70,11 @@ string BookStore::getCurrentTimestamp(){ //Este es el metodo para conseguir el t
 
 std::vector<int> BookStore::sortIndicesByIsbn(const std::vector<Book>& books) {
     std::vector<int> indices(books.size());//Crea un vector con el tamano de books (que realmente es catalogue)
-    for (int i = 0; i < (int)books.size(); ++i) {
+    for (int i = 0; i < books.size(); ++i) {
         indices[i] = i;
     }
 
-    std::sort(indices.begin(), indices.end(),
-              [&books](int a, int b) {
+    std::sort(indices.begin(), indices.end(),[&books](int a, int b) {
                   return books[a].isbn < books[b].isbn;
               });
 
@@ -87,10 +86,9 @@ std::array<int,13> BookStore::stringToIsbnArray(const std::string& Input) {
     if (Input.size() != 13) //Revisa si el input no tiene el min
         throw std::invalid_argument("ISBN must have size of 13 ");
     //Los throws funcionan igualitos a Java , talvez solo cambia eso de std::
-
     std::array<int,13> arr;
     for (int i = 0; i < 13; ++i) {
-        if (!isdigit(Input[i]))
+        if (!isdigit(Input[i]))//Como el contains pero para digitos
             throw std::invalid_argument("ISBN must contain only numbers");
         arr[i] = Input[i] - '0'; // convertir char a num
     }

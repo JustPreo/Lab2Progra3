@@ -9,6 +9,8 @@ Book::Book(string title,string author,std::array<int,13> isbn) {
     this->title = title;
     this->isbn = isbn;
 }
+//Ing , por si lee esto
+//Cuando es necesario sobrescribir el operator<? Eso fue lo que aun no entiendo al 100
 bool Book::operator<(const Book& other) const{
     //Revisar titulo primero
     if (title.compare(other.title)<0){
